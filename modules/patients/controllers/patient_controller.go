@@ -56,6 +56,11 @@ func (a *PatientCon) Create(c *gin.Context) {
 		return
 	}
 
+	if patient.Gender != "M" && patient.Gender != "F" {
+		utils.BadRequestResponse(c, "gender must be M or F")
+		return
+	}
+
 	patient.HospitalID = HospitalID
 
 	createdPatient, err := a.PatientUsecase.Create(&patient)
