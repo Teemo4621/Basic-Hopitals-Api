@@ -34,11 +34,9 @@ func (s *Server) Start() {
 		log.Fatalln(err.Error())
 		panic(err)
 	}
-
 	host := s.Cfg.App.Host
 	port := s.Cfg.App.Port
 	log.Printf("Server is running on %s:%s 🥤", host, port)
-
 	if err := s.App.Run(ginConnURL); err != nil {
 		log.Fatalln(err.Error())
 		panic(err)

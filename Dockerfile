@@ -11,6 +11,6 @@ COPY . .
 
 RUN go build -o main .
 
-EXPOSE ${GIN_PORT}
+EXPOSE 8080
 
-CMD ["./main"]
+CMD go run main.go

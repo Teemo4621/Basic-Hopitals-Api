@@ -7,11 +7,12 @@ import (
 	"github.com/Teemo4621/Hospital-Api/configs"
 	"github.com/Teemo4621/Hospital-Api/modules/servers"
 	"github.com/Teemo4621/Hospital-Api/pkgs/databases"
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
 
 func main() {
-	if err := godotenv.Load(); err != nil {
+	if err := godotenv.Load(".env"); err != nil {
 		panic("error loading .env file")
 	}
 
@@ -41,6 +42,8 @@ func main() {
 	if err := databases.Migrate(db); err != nil {
 		panic(err)
 	}
+
+	gin.SetMode(gin.ReleaseMode)
 
 	server := servers.NewServer(cfg, db)
 	server.Start()
